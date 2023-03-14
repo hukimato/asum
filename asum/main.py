@@ -27,5 +27,4 @@ def main():
     mediator.run()
 
 
-if __name__ == 'main.py':
-    main()
+main()

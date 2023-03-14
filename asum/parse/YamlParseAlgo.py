@@ -1,4 +1,4 @@
-from ParseAlgo import ParseAlgo
+from .ParseAlgo import ParseAlgo
 import yaml
 
 

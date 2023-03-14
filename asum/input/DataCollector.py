@@ -8,7 +8,10 @@ class DataCollector(DataCollectorInterface):
         self.list_of_arguments_name = list_of_arguments_name
 
     def get_data(self) -> dict:
-        parameters = self.__filter_params(argv)
+        argv_test = ['main.py', 'specification_file=../specifications/openapi.json',
+                     'template_file=../templates/template.php', 'destination_dir=../generated/']
+        # parameters = self.__filter_params(argv)
+        parameters = self.__filter_params(argv_test)
         if self.__check_required_params(parameters):
             return parameters
         else:

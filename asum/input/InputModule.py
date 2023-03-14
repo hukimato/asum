@@ -16,10 +16,9 @@ class InputModule:
         data_collector = DataCollector(list(self.list_of_arguments_name.keys()))
         data_validator = DataValidator(self.list_of_arguments_name)
 
+        result = data_collector.get_data()
         try:
-            result = data_validator.validate(data_collector.get_data())
+            data_validator.validate(result)
+            return result
         except Exception as e:
             raise e
-
-        return result
-

@@ -16,12 +16,13 @@ class Mediator:
 
         specification_file_data = self.parse_module.run(path_to_specification)
 
-        list_of_dto = self.prepare_module.run(specification_file_data)
+        list_of_dto = self.prepare_module.prepare_DTO(specification_file_data)
 
-        dict_of_files = self.template_module(list_of_dto, path_to_template)
-
-        generation_status = self.file_create_module(dict_of_files, path_to_destination_dir)
-
-        return generation_status
+        dict_of_files = self.template_module.generate_file_content(path_to_template, list_of_dto)
+        print(dict_of_files)
+        #
+        # generation_status = self.file_create_module(dict_of_files, path_to_destination_dir)
+        #
+        # return generation_status
 
 

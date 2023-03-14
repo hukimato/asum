@@ -1,6 +1,6 @@
-from ParseAlgo import ParseAlgo
-from JsonParseAlgo import JsonParseAlgo
-from YamlParseAlgo import YamlParseAlgo
+from .ParseAlgo import ParseAlgo
+from .JsonParseAlgo import JsonParseAlgo
+from .YamlParseAlgo import YamlParseAlgo
 
 
 class ParseAlgoFactory:

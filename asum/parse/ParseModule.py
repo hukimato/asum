@@ -1,4 +1,4 @@
-from ParseAlgoFactory import ParseAlgoFactory
+from .ParseAlgoFactory import ParseAlgoFactory
 
 
 class ParseModule:
