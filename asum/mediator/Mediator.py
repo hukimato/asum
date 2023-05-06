@@ -1,5 +1,6 @@
 class Mediator:
 
+    # Инициализация внутренних модулей
     def __init__(self, config: dict):
         self.input_module = config['modules']['input_module'](config['parameters'])
         self.parse_module = config['modules']['parse_module']()
@@ -7,6 +8,7 @@ class Mediator:
         self.template_module = config['modules']['template_module']()
         self.file_create_module = config['modules']['file_create_module']()
 
+    # Вызов модулей
     def run(self):
         input_parameters = self.input_module.get_input_data()
 
@@ -19,10 +21,9 @@ class Mediator:
         list_of_dto = self.prepare_module.prepare_DTO(specification_file_data)
 
         dict_of_files = self.template_module.generate_file_content(path_to_template, list_of_dto)
-        print(dict_of_files)
-        #
-        # generation_status = self.file_create_module(dict_of_files, path_to_destination_dir)
-        #
-        # return generation_status
+
+        generation_status = self.file_create_module.run(dict_of_files, path_to_destination_dir)
+
+        return generation_status
 
 

@@ -22,6 +22,7 @@ config = {
 }
 
 
+# python main.py specification_file=../specifications/medium_api.json template_file=../templates/medium_template.json destination_dir=../generated/
 def main():
     mediator = Mediator(config)
     mediator.run()

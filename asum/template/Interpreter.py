@@ -7,7 +7,7 @@ for_pattern = r"<#for (?P<array>\S+) as (?P<item>\S+)#>"
 if_pattern = r'<#\s*if (?P<bool_expression>.+)\s+#>'
 terminal_pattern = r'<#(?P<terminal_expression>.+)#>'
 
-
+# Вспомогательная функция
 def intersperse(lst, item):
     result = [item] * (len(lst) * 2 - 1)
     result[0::2] = lst
@@ -16,7 +16,7 @@ def intersperse(lst, item):
 
 class Interpreter:
 
-    def __init__(self, content, data, dto_path, extra_args = {}):
+    def __init__(self, content, data, dto_path, extra_args={}):
         self.content = content
         self.data = {
             'data': data,
@@ -26,8 +26,7 @@ class Interpreter:
             self.data[key] = val
 
     def interpret(self):
-
-        # разбить на слова
+        # Разбивает контент шаблона на слова
         interpreted_content = []
         splited_content = self.content.split(' ')
         splited_content = intersperse(splited_content, ' ')
@@ -44,6 +43,7 @@ class Interpreter:
             index += 1
         return ''.join(interpreted_content)
 
+    # Интерпретирует выражение в зависимости от токена
     def interpret_expression(self, start_index, splited_content):
         token = splited_content[start_index]
         if re.match(for_pattern, token) is not None:
@@ -60,6 +60,7 @@ class Interpreter:
         else:
             raise Exception(f'Unexpected token {token}')
 
+    # Находит индекс слова, на котором заканчивается выражение for
     @staticmethod
     def find_end_of_for(start_index, content):
         endif_balance = 1
@@ -72,6 +73,7 @@ class Interpreter:
                 endif_balance -= 1
         return stop_index
 
+    # Находит индекс слова, на котором заканчивается выражение if
     @staticmethod
     def find_end_of_if(start_index, content):
         endif_balance = 1
@@ -84,6 +86,7 @@ class Interpreter:
                 endif_balance -= 1
         return stop_index
 
+    # Получает содержимое шаблона разделенное на токены
     @staticmethod
     def get_token_list(splited_content):
         splited_by_tokens = []
